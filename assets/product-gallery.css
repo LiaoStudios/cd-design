@@ -17,7 +17,11 @@
   cursor: zoom-in;
 }
 
-.product-detail img[data-gallery-ready="true"]:focus-visible,
+.product-detail img[data-gallery-ready="true"]:focus-visible {
+  outline: 3px solid #0f2d83;
+  outline-offset: -5px;
+}
+
 .cd-lightbox__close:focus-visible {
   outline: 3px solid #fff;
   outline-offset: 4px;
