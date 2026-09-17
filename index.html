@@ -31,9 +31,62 @@ tailwind.config = {
 }
 </script>
 <style>
+  :root {
+    --cd-blue: #0f2d83;
+    --cd-blue-mid: #3454c4;
+    --cd-blue-deep: #081c5b;
+    --cd-blue-pale: #e8f0ff;
+  }
   html { scroll-behavior: smooth; }
   body { font-family: 'IBM Plex Sans', sans-serif; background:#fff; color:#0f2d83; }
   h1,h2,h3,h4, .font-display { font-family: 'Big Shoulders Display', sans-serif; letter-spacing: -0.005em; }
+
+  .home-section--products {
+    background: #e8f0ff;
+  }
+  .home-section--products .product-card {
+    padding: 1.15rem 1.15rem 1.35rem;
+    border: 1px solid rgba(15,45,131,0.10);
+    border-radius: 2rem;
+    background: rgba(255,255,255,0.88);
+    box-shadow: 0 18px 50px rgba(15,45,131,0.08);
+  }
+  .home-section--projects {
+    background: #fff;
+  }
+  .home-section--reviews {
+    color: #fff;
+    background: #0a236e;
+  }
+  .home-section--reviews .review-eyebrow { color: #bfd0ff; }
+  .home-section--reviews .review-intro { color: #dfe7ff; }
+  .home-section--reviews .review-score {
+    border-color: rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.10);
+  }
+  .home-section--reviews .review-score-copy { color: #dfe7ff; }
+  .home-section--reviews .review-card {
+    color: var(--cd-blue);
+    border-color: rgba(255,255,255,0.45);
+    background: rgba(255,255,255,0.96);
+    box-shadow: 0 24px 70px rgba(2,6,23,0.28);
+  }
+  .home-section--reviews .review-prev {
+    color: #fff;
+    border-color: rgba(255,255,255,0.32);
+    background: rgba(255,255,255,0.06);
+  }
+  .home-section--reviews .review-next { color: var(--cd-blue); background: #fff; }
+  .contact-panel--info { background: #0f2d83; }
+  .contact-panel--form { background: #e8f0ff; }
+  .home-footer {
+    color: #fff;
+    border-color: rgba(255,255,255,0.12);
+    background: var(--cd-blue-deep);
+  }
+  .home-footer .footer-muted { color: #c6d3f5; }
+  .home-footer .footer-link:hover { color: #fff; }
+  .home-footer .footer-social { border-color: rgba(255,255,255,0.28); }
 
   .home-nav {
     background: transparent;
@@ -48,79 +101,144 @@ tailwind.config = {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
+  .home-nav__inner { position: relative; justify-content: flex-end; }
+  .home-nav__brand {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0.3rem 0.55rem;
+    border: 1px solid rgba(234,238,244,0.9);
+    border-radius: 0.75rem;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 8px 24px rgba(15,23,42,0.08);
+  }
 
   .home-hero {
     position: relative;
-    display: flex;
-    align-items: center;
-    min-height: 760px;
-    padding: 8rem 0 5rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    min-height: 46rem;
     overflow: hidden;
-    background: #111827;
+    background: #fff;
   }
   .home-hero__media {
-    position: absolute;
-    inset: 0;
+    position: relative;
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 46rem;
     overflow: hidden;
-    background: #111827;
-  }
-  .home-hero__media::before {
-    content: '';
-    position: absolute;
-    z-index: 0;
-    inset: -2rem;
-    background: url('images/hero.jpg') center / cover no-repeat;
-    filter: blur(20px);
-    opacity: 0.58;
+    background: #dbe3ee;
   }
   .home-hero__media img {
-    position: relative;
-    z-index: 1;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    min-height: 46rem;
+    object-fit: cover;
+    object-position: 52% 48%;
   }
   .home-hero__media::after {
     content: '';
     position: absolute;
-    z-index: 2;
     inset: 0;
-    background: linear-gradient(90deg, rgba(2,6,23,0.70) 0%, rgba(2,6,23,0.32) 48%, rgba(2,6,23,0.10) 100%);
+    background: linear-gradient(90deg, rgba(15,45,131,0.12), transparent 24%);
+    pointer-events: none;
   }
-  .home-hero__content { position: relative; z-index: 3; }
+  .home-hero__content {
+    position: relative;
+    z-index: 3;
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    padding: 6rem clamp(2rem, 4vw, 5rem) 4rem max(2rem, calc((100vw - 80rem) / 2 + 2.5rem));
+  }
+  .home-hero__content-inner { width: min(100%, 38rem); }
+  .home-hero__badge {
+    background: #f5f7fa;
+    border-color: #eaeef4;
+  }
+  .home-hero__badge span { font-size: 0.8125rem; }
+  .home-hero__content h1 {
+    color: #0f2d83;
+    font-size: clamp(5rem, 5.8vw, 5.75rem);
+    line-height: 1;
+  }
+  .home-hero__content .home-hero__stat { color: #0f2d83; }
+  .home-hero__content .home-hero__lede {
+    color: #64748b;
+    font-size: clamp(1.15rem, 1.45vw, 1.3rem);
+    line-height: 1.65;
+  }
+  .home-hero__content .home-hero__stat-label { color: #64748b; }
+  .home-hero__actions a { font-size: 1.05rem; }
+  .home-hero__stat-label { font-size: 0.95rem; }
+  .home-hero__content .home-hero__primary {
+    background: #0f2d83;
+    color: #fff;
+  }
+  .home-hero__content .home-hero__secondary {
+    border-color: #0f2d83;
+    background: transparent;
+    color: #0f2d83;
+  }
 
   @media (max-width: 767px) {
     .home-hero {
-      display: grid;
-      min-height: 0;
-      padding: 0;
-      background: #fff;
+      display: flex;
+      align-items: flex-end;
+      min-height: max(44rem, 100svh);
+      background: #0b1220;
     }
     .home-hero__media {
-      position: relative;
-      height: min(62vh, 32rem);
-      min-height: 21rem;
-      margin-top: 0;
+      position: absolute;
+      inset: 0;
+      min-height: 0;
+    }
+    .home-hero__media img {
+      min-height: 100%;
+      object-position: 48% center;
     }
     .home-hero__media::after {
-      background: linear-gradient(180deg, rgba(2,6,23,0.04), rgba(2,6,23,0.18));
+      background: linear-gradient(180deg, rgba(2,6,23,0.04) 12%, rgba(2,6,23,0.20) 43%, rgba(2,6,23,0.91) 84%, rgba(2,6,23,0.98) 100%);
     }
     .home-hero__content {
       position: relative;
-      background: #fff;
-      color: #0f2d83;
-      padding-top: 2rem;
-      padding-bottom: 3rem;
+      display: block;
+      padding: 7rem 1.5rem 2rem;
+      color: #fff;
+    }
+    .home-hero__content-inner {
+      width: min(100%, 34rem);
+      margin-inline: auto;
+      transform: none;
+    }
+    .home-hero__badge {
+      margin-bottom: 1rem;
+      padding: 0.45rem 0.75rem;
+      background: rgba(255,255,255,0.92);
     }
     .home-hero__content h1 {
-      color: #0f2d83;
-      font-size: clamp(2.25rem, 11vw, 3.25rem);
+      color: #fff;
+      font-size: clamp(2.35rem, 10.5vw, 3rem);
+      line-height: 0.98;
     }
-    .home-hero__content > div > p { color: #475569; }
-    .home-hero__content .home-hero__primary { background: #0f2d83; color: #fff; }
-    .home-hero__content .home-hero__secondary { border-color: #0f2d83; background: transparent; color: #0f2d83; }
-    .home-hero__content .home-hero__stat { color: #0f2d83; }
-    .home-hero__content .home-hero__stat-label { color: #64748b; }
+    .home-hero__content .home-hero__lede {
+      color: #e2e8f0;
+      margin-top: 1rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+    .home-hero__badge span { font-size: 0.7rem; }
+    .home-hero__actions { gap: 0.65rem; margin-bottom: 1.25rem; }
+    .home-hero__actions a { padding: 0.75rem 1rem; font-size: 0.875rem; }
+    .home-hero__content .home-hero__primary { background: #fff; color: #0f2d83; }
+    .home-hero__content .home-hero__secondary { border-color: rgba(255,255,255,0.72); background: rgba(15,23,42,0.3); color: #fff; }
+    .home-hero__stats { gap: 1.5rem; }
+    .home-hero__content .home-hero__stat { color: #fff; font-size: 1.25rem; }
+    .home-hero__content .home-hero__stat-label { color: #cbd5e1; font-size: 0.75rem; }
   }
 
   .reveal-on-scroll {
@@ -260,8 +378,8 @@ tailwind.config = {
 
 <!-- NAVIGATION -->
 <nav id="siteNav" class="home-nav fixed top-0 left-0 right-0 z-50 h-20 border-b">
-  <div class="max-w-7xl mx-auto h-full px-6 md:px-10 flex items-center justify-between">
-    <a href="index.html" class="flex items-center gap-2">
+  <div class="home-nav__inner max-w-7xl mx-auto h-full px-6 md:px-10 flex items-center">
+    <a href="index.html" class="home-nav__brand flex items-center gap-2" aria-label="CD Design - Home">
       <img src="images/logo.jpg" alt="CD Design Porte &amp; Finestre" class="h-10 w-auto object-contain rounded-md transition-transform duration-300 ease-out hover:rotate-[30deg]">
     </a>
     <div class="relative">
@@ -269,22 +387,22 @@ tailwind.config = {
         <iconify-icon id="menuIconOpen" icon="lucide:menu" width="20"></iconify-icon>
         <iconify-icon id="menuIconClose" icon="lucide:x" width="20" class="hidden"></iconify-icon>
       </button>
-      <div id="dropdownMenu" class="hidden absolute right-0 top-14 w-72 bg-white rounded-2xl shadow-2xl border border-brand-100 p-3 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
+      <div id="dropdownMenu" class="hidden absolute right-0 top-14 w-72 bg-white rounded-2xl shadow-2xl border border-brand-100 p-3 flex flex-col gap-1 max-h-[calc(100vh-6rem)] overflow-y-auto">
         <button id="prodottiToggle" type="button" aria-expanded="false" class="w-full flex items-center justify-between px-4 py-3.5 rounded-xl hover:bg-brand-50 transition-colors">
           <span class="text-sm font-semibold">Prodotti</span>
           <span id="prodottiPlus" class="w-6 h-6 rounded-full bg-brand-900 text-white flex items-center justify-center text-base leading-none font-medium transition-transform duration-300 ease-in-out">+</span>
         </button>
         <div id="prodottiSubmenu" class="overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out">
           <div class="flex flex-col gap-0.5 pt-1 pb-2 pl-3 border-l-2 border-brand-50 ml-4">
-          <a href="infissi-pvc.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Infissi in PVC</a>
-          <a href="infissi-alluminio.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Infissi in Alluminio</a>
-          <a href="infissi-legno.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Infissi in Legno</a>
-          <a href="porte-blindate.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Porte Blindate</a>
-          <a href="zanzariere.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Zanzariere</a>
-          <a href="persiane-scuri-alluminio.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Persiane e Scuri in Alluminio</a>
-          <a href="porte-interne.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Porte Interne</a>
-          <a href="tende-caduta-sole.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Tende a Caduta e da Sole</a>
-          <a href="falegnameria.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Falegnameria</a>
+          <a href="infissi-pvc.html" class="px-4 py-2 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Infissi in PVC</a>
+          <a href="infissi-alluminio.html" class="px-4 py-2 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Infissi in Alluminio</a>
+          <a href="infissi-legno.html" class="px-4 py-2 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Infissi in Legno</a>
+          <a href="porte-blindate.html" class="px-4 py-2 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Porte Blindate</a>
+          <a href="zanzariere.html" class="px-4 py-2 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Zanzariere</a>
+          <a href="persiane-scuri-alluminio.html" class="px-4 py-2 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Persiane e Scuri in Alluminio</a>
+          <a href="porte-interne.html" class="px-4 py-2 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Porte Interne</a>
+          <a href="tende-caduta-sole.html" class="px-4 py-2 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Tende a Caduta e da Sole</a>
+          <a href="falegnameria.html" class="px-4 py-2 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Falegnameria</a>
           </div>
         </div>
         <a href="#realizzazioni" class="px-4 py-3.5 rounded-xl hover:bg-brand-50 transition-colors text-sm font-medium">Realizzazioni</a>
@@ -300,22 +418,22 @@ tailwind.config = {
   <div class="home-hero__media">
     <img src="images/hero.jpg" alt="Montaggio con gru di una grande vetrata su un'abitazione a Castel Maggiore, lavoro di CD Design" fetchpriority="high">
   </div>
-  <div class="home-hero__content max-w-7xl mx-auto px-6 md:px-10 w-full">
-    <div class="max-w-2xl">
-      <div class="inline-flex items-center gap-2 bg-white/95 backdrop-blur border border-white/20 rounded-full px-4 py-2 mb-6 md:mb-8 shadow-sm">
+  <div class="home-hero__content">
+    <div class="home-hero__content-inner">
+      <div class="home-hero__badge inline-flex items-center gap-2 backdrop-blur border rounded-full px-4 py-2 mb-6 md:mb-8 shadow-sm">
         <span class="text-xs font-medium tracking-widest uppercase text-brand-900">Attività Artigianale &middot; Castel Maggiore, BO</span>
       </div>
       <h1 class="font-display font-extrabold text-4xl sm:text-5xl md:text-7xl leading-[1.1] md:leading-[1.05] tracking-tight text-white">
         Infissi su misura,<br class="hidden md:block"> per ogni <span class="italic">casa</span>.
       </h1>
-      <p class="text-base md:text-lg text-slate-200 max-w-lg mt-6 mb-8 md:mb-10 leading-relaxed">
+      <p class="home-hero__lede text-base md:text-lg max-w-lg mt-6 mb-8 md:mb-10 leading-relaxed">
         Porte, finestre e serramenti in alluminio, PVC e legno: qualità artigianale, marchi selezionati e assistenza diretta a Castel Maggiore e in tutta la provincia di Bologna.
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 mb-10 md:mb-12">
+      <div class="home-hero__actions flex flex-col sm:flex-row gap-4 mb-10 md:mb-12">
         <a href="#contatti" class="home-hero__primary bg-white text-brand-900 text-center font-medium px-7 py-4 rounded-full shadow-lg hover:-translate-y-1 transition-transform">Richiedi un Sopralluogo Gratuito</a>
-        <a href="#prodotti" class="home-hero__secondary border-2 border-white/60 bg-white/10 backdrop-blur text-white text-center font-medium px-7 py-4 rounded-full hover:border-white transition-colors">Scopri i Prodotti</a>
+        <a id="discoverProductsBtn" href="#prodotti" class="home-hero__secondary border-2 backdrop-blur text-center font-medium px-7 py-4 rounded-full transition-colors">Scopri i Prodotti</a>
       </div>
-      <div class="flex flex-wrap gap-x-10 gap-y-4">
+      <div class="home-hero__stats flex flex-wrap gap-x-10 gap-y-4">
         <div>
           <p class="home-hero__stat font-display font-bold text-2xl flex items-center gap-1 text-white">5,0 <iconify-icon icon="lucide:star" class="text-amber-400" width="20"></iconify-icon></p>
           <p class="home-hero__stat-label text-sm text-slate-300">Valutazione su Google</p>
@@ -330,7 +448,7 @@ tailwind.config = {
 </section>
 
 <!-- PRODOTTI -->
-<section id="prodotti" class="py-20 md:py-32 bg-white">
+<section id="prodotti" class="home-section--products py-20 md:py-32">
   <div class="max-w-7xl mx-auto px-6 md:px-10">
     <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16 reveal-on-scroll">
       <div>
@@ -397,7 +515,7 @@ tailwind.config = {
 </section>
 
 <!-- REALIZZAZIONI -->
-<section id="realizzazioni" class="py-20 md:py-32 bg-brand-50">
+<section id="realizzazioni" class="home-section--projects py-20 md:py-32">
   <div class="max-w-7xl mx-auto px-6 md:px-10">
     <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 reveal-on-scroll">
       <div>
@@ -553,14 +671,14 @@ tailwind.config = {
 </div>
 
 <!-- RECENSIONI -->
-<section id="recensioni" class="relative py-20 md:py-32 bg-white overflow-hidden">
-  <iconify-icon icon="lucide:quote" class="absolute -top-10 -left-10 text-brand-900/5" width="380"></iconify-icon>
+<section id="recensioni" class="home-section--reviews relative py-20 md:py-32 overflow-hidden">
+  <iconify-icon icon="lucide:quote" class="absolute -top-10 -left-10 text-white/5" width="380"></iconify-icon>
   <div class="max-w-7xl mx-auto px-6 md:px-10 relative grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
     <div class="reveal-on-scroll">
-      <p class="text-xs font-semibold tracking-widest uppercase text-accent mb-3">Recensioni</p>
+      <p class="review-eyebrow text-xs font-semibold tracking-widest uppercase mb-3">Recensioni</p>
       <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight mb-6">Cosa dicono di noi i nostri clienti</h2>
-      <p class="text-brand-400 leading-relaxed mb-8 max-w-md">La soddisfazione di chi ci ha scelto è il nostro biglietto da visita: qualità dei materiali, precisione nella posa e un unico referente dall'inizio alla fine.</p>
-      <div class="inline-flex items-center gap-4 bg-brand-50 border border-brand-100 rounded-2xl px-6 py-4">
+      <p class="review-intro leading-relaxed mb-8 max-w-md">La soddisfazione di chi ci ha scelto è il nostro biglietto da visita: qualità dei materiali, precisione nella posa e un unico referente dall'inizio alla fine.</p>
+      <div class="review-score inline-flex items-center gap-4 border rounded-2xl px-6 py-4">
         <p class="font-display font-bold text-4xl leading-none">5,0</p>
         <div>
           <div class="flex gap-0.5 text-amber-400 mb-1">
@@ -570,13 +688,13 @@ tailwind.config = {
             <iconify-icon icon="lucide:star" width="16"></iconify-icon>
             <iconify-icon icon="lucide:star" width="16"></iconify-icon>
           </div>
-          <p class="text-xs text-brand-400">Valutazione su Google</p>
+          <p class="review-score-copy text-xs">Valutazione su Google</p>
         </div>
       </div>
     </div>
 
     <div class="reveal-on-scroll">
-      <div class="bg-brand-50 border border-brand-100 rounded-3xl p-8 md:p-10 shadow-sm">
+      <div class="review-card border rounded-3xl p-8 md:p-10">
         <div class="flex gap-0.5 text-amber-400 mb-5">
           <iconify-icon icon="lucide:star" width="18"></iconify-icon>
           <iconify-icon icon="lucide:star" width="18"></iconify-icon>
@@ -596,8 +714,8 @@ tailwind.config = {
       <div class="flex items-center justify-between mt-6">
         <div id="revDots" class="flex gap-2"></div>
         <div class="flex gap-3">
-          <button id="revPrev" aria-label="Recensione precedente" class="w-11 h-11 rounded-full border border-brand-100 flex items-center justify-center hover:bg-brand-50 transition-colors"><iconify-icon icon="lucide:arrow-left" width="18"></iconify-icon></button>
-          <button id="revNext" aria-label="Recensione successiva" class="w-11 h-11 rounded-full bg-brand-900 text-white flex items-center justify-center hover:-translate-y-0.5 transition-transform"><iconify-icon icon="lucide:arrow-right" width="18"></iconify-icon></button>
+          <button id="revPrev" aria-label="Recensione precedente" class="review-prev w-11 h-11 rounded-full border flex items-center justify-center transition-colors"><iconify-icon icon="lucide:arrow-left" width="18"></iconify-icon></button>
+          <button id="revNext" aria-label="Recensione successiva" class="review-next w-11 h-11 rounded-full flex items-center justify-center hover:-translate-y-0.5 transition-transform"><iconify-icon icon="lucide:arrow-right" width="18"></iconify-icon></button>
         </div>
       </div>
     </div>
@@ -605,9 +723,9 @@ tailwind.config = {
 </section>
 
 <!-- CONTATTI -->
-<section id="contatti" class="bg-white">
+<section id="contatti">
   <div class="flex flex-col lg:flex-row">
-    <div class="lg:w-1/2 bg-brand-900 text-white px-6 md:px-16 py-16 md:py-24 flex items-center">
+    <div class="contact-panel--info lg:w-1/2 text-white px-6 md:px-16 py-16 md:py-24 flex items-center">
       <div class="max-w-md reveal-on-scroll">
         <h2 class="font-display font-bold text-4xl tracking-tight mb-5">Pronto a rinnovare i tuoi infissi?</h2>
         <p class="text-slate-300 mb-10 leading-relaxed">Richiedi un sopralluogo gratuito e un preventivo personalizzato: ti risponderemo il prima possibile.</p>
@@ -636,7 +754,7 @@ tailwind.config = {
         </div>
       </div>
     </div>
-    <div class="lg:w-1/2 px-6 md:px-16 py-16 md:py-24 flex items-center">
+    <div class="contact-panel--form lg:w-1/2 px-6 md:px-16 py-16 md:py-24 flex items-center">
       <form id="quoteForm" name="richiesta-preventivo" method="POST" data-netlify="true" netlify-honeypot="azienda" class="w-full max-w-md space-y-6 reveal-on-scroll">
         <input type="hidden" name="form-name" value="richiesta-preventivo">
         <p class="hidden">
@@ -701,18 +819,18 @@ tailwind.config = {
 </section>
 
 <!-- FOOTER -->
-<footer class="bg-brand-50 border-t border-brand-100">
+<footer class="home-footer border-t">
   <div class="max-w-7xl mx-auto px-6 md:px-10 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
     <div class="flex items-center gap-2.5">
       <img src="images/logo.jpg" alt="CD Design" class="h-8 w-auto object-contain rounded-md transition-transform duration-300 ease-out hover:rotate-[30deg]">
-      <p class="text-sm text-brand-400">&copy; <span id="year"></span> CD Design di Capelli Daniele &middot; P.IVA 04073351209</p>
+      <p class="footer-muted text-sm">&copy; <span id="year"></span> CD Design di Capelli Daniele &middot; P.IVA 04073351209</p>
     </div>
-    <div class="flex gap-6 text-sm text-brand-400">
-      <a href="privacy.html" class="hover:text-brand-900 transition-colors">Privacy Policy</a>
-      <a href="cookie.html" class="hover:text-brand-900 transition-colors">Cookie Policy</a>
+    <div class="footer-muted flex gap-6 text-sm">
+      <a href="privacy.html" class="footer-link transition-colors">Privacy Policy</a>
+      <a href="cookie.html" class="footer-link transition-colors">Cookie Policy</a>
     </div>
     <div class="flex gap-4">
-      <a href="https://www.facebook.com/0cddesign/" target="_blank" rel="noopener" aria-label="Facebook" class="w-9 h-9 rounded-full border border-brand-100 flex items-center justify-center hover:bg-brand-900 hover:text-white hover:border-brand-900 transition-colors">
+      <a href="https://www.facebook.com/0cddesign/" target="_blank" rel="noopener" aria-label="Facebook" class="footer-social w-9 h-9 rounded-full border flex items-center justify-center hover:bg-white hover:text-brand-900 transition-colors">
         <iconify-icon icon="lucide:facebook" width="16"></iconify-icon>
       </a>
     </div>
@@ -730,11 +848,18 @@ tailwind.config = {
   const prodottiToggle = document.getElementById('prodottiToggle');
   const prodottiSubmenu = document.getElementById('prodottiSubmenu');
   const prodottiPlus = document.getElementById('prodottiPlus');
+  const discoverProductsBtn = document.getElementById('discoverProductsBtn');
 
   function collapseSubmenu() {
     prodottiSubmenu.style.maxHeight = '0px';
     prodottiToggle.setAttribute('aria-expanded', 'false');
     prodottiPlus.style.transform = 'rotate(0deg)';
+  }
+  function expandSubmenu() {
+    prodottiSubmenu.classList.remove('hidden');
+    prodottiToggle.setAttribute('aria-expanded', 'true');
+    prodottiPlus.style.transform = 'rotate(45deg)';
+    prodottiSubmenu.style.maxHeight = prodottiSubmenu.scrollHeight + 'px';
   }
   function closeMenu() {
     dropdownMenu.classList.add('hidden');
@@ -751,6 +876,13 @@ tailwind.config = {
     menuIconClose.classList.remove('hidden');
     menuBtn.setAttribute('aria-expanded', 'true');
   }
+  function openProductsMenu({ focusFirst = true } = {}) {
+    openMenu();
+    expandSubmenu();
+    if (focusFirst) {
+      window.setTimeout(() => prodottiSubmenu.querySelector('a')?.focus(), 320);
+    }
+  }
   function updateNavigationState() {
     siteNav.classList.toggle('is-scrolled', window.scrollY > 24);
   }
@@ -766,10 +898,13 @@ tailwind.config = {
     if (expanded) {
       collapseSubmenu();
     } else {
-      prodottiToggle.setAttribute('aria-expanded', 'true');
-      prodottiPlus.style.transform = 'rotate(45deg)';
-      prodottiSubmenu.style.maxHeight = prodottiSubmenu.scrollHeight + 'px';
+      expandSubmenu();
     }
+  });
+  discoverProductsBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    openProductsMenu();
   });
   dropdownMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
   document.addEventListener('click', (e) => {
@@ -902,7 +1037,7 @@ tailwind.config = {
         revAvatar.textContent = r.n.charAt(0);
         revText.style.opacity = 1;
       }, 150);
-      dots.forEach((d, j) => { d.style.background = j === idx ? '#0f2d83' : 'rgba(15,45,131,0.2)'; });
+      dots.forEach((d, j) => { d.style.background = j === idx ? '#ffffff' : 'rgba(255,255,255,0.34)'; });
     }
     revText.style.transition = 'opacity 300ms ease';
     function restart() { if (timer) clearInterval(timer); timer = setInterval(() => show(idx + 1), 6000); }
