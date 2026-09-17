@@ -201,12 +201,12 @@ tailwind.config = {
       object-position: 48% center;
     }
     .home-hero__media::after {
-      background: linear-gradient(180deg, rgba(2,6,23,0.04) 12%, rgba(2,6,23,0.20) 43%, rgba(2,6,23,0.91) 84%, rgba(2,6,23,0.98) 100%);
+      background: linear-gradient(180deg, rgba(2,6,23,0.02) 12%, rgba(2,6,23,0.10) 43%, rgba(2,6,23,0.78) 84%, rgba(2,6,23,0.92) 100%);
     }
     .home-hero__content {
       position: relative;
       display: block;
-      padding: 7rem 1.5rem 2rem;
+      padding: 7rem 1.5rem 1.75rem;
       color: #fff;
     }
     .home-hero__content-inner {
@@ -214,31 +214,28 @@ tailwind.config = {
       margin-inline: auto;
       transform: none;
     }
-    .home-hero__badge {
-      margin-bottom: 1rem;
-      padding: 0.45rem 0.75rem;
-      background: rgba(255,255,255,0.92);
-    }
+    .home-hero__badge { display: none !important; }
     .home-hero__content h1 {
       color: #fff;
-      font-size: clamp(2.35rem, 10.5vw, 3rem);
+      font-size: clamp(2.75rem, 12vw, 3.5rem);
       line-height: 0.98;
+      text-align: center;
     }
     .home-hero__content .home-hero__lede {
       color: #e2e8f0;
-      margin-top: 1rem;
-      margin-bottom: 1.25rem;
-      font-size: 0.9rem;
-      line-height: 1.55;
+      margin-top: 0.85rem;
+      margin-bottom: 1.1rem;
+      font-size: 0.8rem;
+      line-height: 1.5;
     }
-    .home-hero__badge span { font-size: 0.7rem; }
-    .home-hero__actions { gap: 0.65rem; margin-bottom: 1.25rem; }
-    .home-hero__actions a { padding: 0.75rem 1rem; font-size: 0.875rem; }
+    .home-hero__badge span { font-size: 0.525rem; }
+    .home-hero__actions { gap: 0.6rem; margin-bottom: 1.1rem; }
+    .home-hero__actions a { padding: 0.65rem 0.9rem; font-size: 0.8rem; }
     .home-hero__content .home-hero__primary { background: #fff; color: #0f2d83; }
     .home-hero__content .home-hero__secondary { border-color: rgba(255,255,255,0.72); background: rgba(15,23,42,0.3); color: #fff; }
-    .home-hero__stats { gap: 1.5rem; }
-    .home-hero__content .home-hero__stat { color: #fff; font-size: 1.25rem; }
-    .home-hero__content .home-hero__stat-label { color: #cbd5e1; font-size: 0.75rem; }
+    .home-hero__stats { gap: 1.25rem; }
+    .home-hero__content .home-hero__stat { color: #fff; font-size: 1.05rem; }
+    .home-hero__content .home-hero__stat-label { color: #cbd5e1; font-size: 0.65rem; }
   }
 
   .reveal-on-scroll {
