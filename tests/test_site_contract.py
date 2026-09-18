@@ -57,7 +57,7 @@ class SiteContractTests(unittest.TestCase):
         self.assertIn("align-items: flex-start", html)
         self.assertIn("padding: 6rem clamp(2rem, 4vw, 5rem)", html)
         self.assertIn("font-size: clamp(5rem, 5.8vw, 5.75rem)", html)
-        self.assertIn("font-size: clamp(2.35rem, 10.5vw, 3rem)", html)
+        self.assertIn("font-size: clamp(2.75rem, 12vw, 3.5rem)", html)
         self.assertIn("transform: none", html)
 
     def test_home_alternates_solid_logo_palette_sections(self):
@@ -86,6 +86,58 @@ class SiteContractTests(unittest.TestCase):
         self.assertIn("object-fit: cover", css)
         self.assertIn("object-position: var(--intro-position, center)", css)
         self.assertIn("aspect-ratio: 16 / 9", css)
+
+    def test_product_cards_use_larger_full_bleed_media(self):
+        css = self.read("assets/product-gallery.css")
+        self.assertIn(".product-card-media", css)
+        self.assertIn("height: 18rem", css)
+        self.assertIn("object-fit: cover", css)
+        self.assertIn("padding: 0", css)
+
+    def test_product_navigation_links_look_like_buttons(self):
+        for page in PRODUCT_PAGES:
+            html = self.read(page)
+            self.assertIn("product-back-button", html, page)
+            self.assertEqual(html.count("product-pager__button"), 2, page)
+        css = self.read("assets/product-gallery.css")
+        self.assertIn(".product-back-button", css)
+        self.assertIn("background: #0f2d83", css)
+        self.assertIn(".product-pager__button", css)
+
+    def test_correct_product_photos_match_wood_windows_and_security_products(self):
+        wood = self.read("infissi-legno.html")
+        security = self.read("porte-blindate.html")
+        self.assertRegex(wood, r'foto-167\.jpg[^>]+alt="Finestre in legno"')
+        self.assertRegex(wood, r'foto-121\.jpg[^>]+alt="Finestre ad arco"')
+        self.assertRegex(security, r'foto-117\.jpg[^>]+alt="Grata di sicurezza a doppia anta"')
+        self.assertNotIn("Ingresso con vetrata", security)
+
+    def test_armored_door_catalog_copy_matches_the_selected_images(self):
+        html = self.read("porte-blindate.html")
+        expected = {
+            "images/foto-019.jpg": ("Porta blindata moderna", "Pannello rosso con inserti geometrici"),
+            "images/porta-blindata-intro.jpg": ("Porta effetto legno", "Ingresso installato con pannello coordinato"),
+            "images/foto-151.jpg": ("Pannelli personalizzabili", "Modelli e finiture effetto legno"),
+            "images/foto-192.jpg": ("Struttura della porta", "Vista esplosa dei componenti interni"),
+            "images/foto-067.jpg": ("Cilindro di sicurezza", "Dettaglio della chiusura con defender"),
+            "images/foto-117.jpg": ("Grata di sicurezza a doppia anta", "Protezione esterna apribile in metallo verniciato"),
+        }
+        for image, (title, copy) in expected.items():
+            self.assertIn(f'src="{image}"', html)
+            self.assertIn(title, html)
+            self.assertIn(copy, html)
+        for stale_image in ("images/foto-028.jpg", "images/foto-041.jpg", "images/foto-159.jpg"):
+            self.assertNotIn(stale_image, html)
+        self.assertIn("Soluzioni per ogni ingresso", html)
+        self.assertIn("security-product-card", html)
+
+    def test_arched_window_hides_embedded_heading_in_the_lightbox(self):
+        html = self.read("infissi-legno.html")
+        js = self.read("assets/product-gallery.js")
+        css = self.read("assets/product-gallery.css")
+        self.assertRegex(html, r'foto-121\.jpg[^>]+data-lightbox-crop="arched-window"')
+        self.assertIn("image.dataset.lightboxCrop", js)
+        self.assertIn("cd-lightbox__figure--arched-window", css)
 
     def test_falegnameria_content_is_wood_focused(self):
         html = self.read("falegnameria.html")

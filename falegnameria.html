@@ -92,7 +92,7 @@ tailwind.config = {
 <!-- HEADER CATEGORIA -->
 <section class="pt-28 pb-10 md:pt-36 md:pb-14 bg-brand-50">
   <div class="max-w-5xl mx-auto px-6 md:px-10">
-    <a href="index.html" class="inline-flex items-center gap-2 text-sm font-medium text-brand-400 hover:text-brand-900 transition-colors mb-6">
+    <a href="index.html" class="product-back-button inline-flex items-center gap-2 text-sm font-medium transition-all mb-6">
       <iconify-icon icon="lucide:arrow-left" width="16"></iconify-icon>
       Torna al sito
     </a>
@@ -119,21 +119,21 @@ tailwind.config = {
     <h2 class="font-display font-semibold text-2xl mb-6">Prodotti disponibili</h2>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 mb-16">
       <div class="group">
-        <div class="overflow-hidden rounded-2xl h-56 md:h-64 bg-brand-50 border border-brand-100">
+        <div class="product-card-media overflow-hidden rounded-2xl h-56 md:h-64 bg-brand-50 border border-brand-100">
           <img src="images/falegnameria-porta-legno.jpg" loading="lazy" alt="Porta in legno naturale inserita in un ambiente contemporaneo" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105">
         </div>
         <h3 class="font-display font-semibold text-lg mt-4">Porte in legno su misura</h3>
         <p class="text-sm text-brand-400 mt-1">Essenze, finiture e adattamenti per ogni ambiente</p>
       </div>
       <div class="group">
-        <div class="overflow-hidden rounded-2xl h-56 md:h-64 bg-brand-50 border border-brand-100">
+        <div class="product-card-media overflow-hidden rounded-2xl h-56 md:h-64 bg-brand-50 border border-brand-100">
           <img src="images/falegnameria-infisso-legno.jpg" loading="lazy" alt="Infisso con finitura legno installato su misura" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105">
         </div>
         <h3 class="font-display font-semibold text-lg mt-4">Infissi e ripristini in legno</h3>
         <p class="text-sm text-brand-400 mt-1">Adattamento, manutenzione e recupero delle finiture</p>
       </div>
       <div class="group">
-        <div class="overflow-hidden rounded-2xl h-56 md:h-64 bg-brand-50 border border-brand-100">
+        <div class="product-card-media overflow-hidden rounded-2xl h-56 md:h-64 bg-brand-50 border border-brand-100">
           <img src="images/falegnameria-finiture-legno.jpg" loading="lazy" alt="Dettaglio di una pannellatura in legno con maniglia" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105">
         </div>
         <h3 class="font-display font-semibold text-lg mt-4">Finiture e pannellature</h3>
@@ -141,12 +141,12 @@ tailwind.config = {
       </div>
     </div>
 
-    <div class="flex items-center justify-between border-t border-brand-100 pt-8">
-      <a href="tende-caduta-sole.html" class="inline-flex items-center gap-2 text-sm font-medium text-brand-400 hover:text-brand-900 transition-colors">
+    <div class="product-pager flex items-center justify-between border-t border-brand-100 pt-8">
+      <a href="tende-caduta-sole.html" class="product-pager__button inline-flex items-center gap-2 text-sm font-medium transition-all">
         <iconify-icon icon="lucide:arrow-left" width="16"></iconify-icon>
         Tende a Caduta e da Sole
       </a>
-      <a href="infissi-pvc.html" class="inline-flex items-center gap-2 text-sm font-medium text-brand-400 hover:text-brand-900 transition-colors">
+      <a href="infissi-pvc.html" class="product-pager__button inline-flex items-center gap-2 text-sm font-medium transition-all">
         Infissi in PVC
         <iconify-icon icon="lucide:arrow-right" width="16"></iconify-icon>
       </a>

@@ -13,11 +13,16 @@
     </figure>`;
 
   const fullImage = overlay.querySelector('.cd-lightbox__image');
+  const figure = overlay.querySelector('.cd-lightbox__figure');
   const caption = overlay.querySelector('.cd-lightbox__caption');
   const closeButton = overlay.querySelector('.cd-lightbox__close');
 
   function open(image) {
     activeTrigger = image;
+    figure.className = 'cd-lightbox__figure';
+    if (image.dataset.lightboxCrop) {
+      figure.classList.add(`cd-lightbox__figure--${image.dataset.lightboxCrop}`);
+    }
     fullImage.src = image.currentSrc || image.src;
     fullImage.alt = image.alt || '';
     caption.textContent = image.alt || '';
@@ -30,6 +35,7 @@
     if (!overlay.classList.contains('is-open')) return;
     overlay.classList.remove('is-open');
     document.body.classList.remove('cd-lightbox-open');
+    figure.className = 'cd-lightbox__figure';
     fullImage.removeAttribute('src');
     if (activeTrigger) activeTrigger.focus();
     activeTrigger = null;

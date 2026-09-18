@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Porte Blindate | CD Design Porte &amp; Finestre</title>
-<meta name="description" content="Porte blindate certificate per la sicurezza della tua abitazione, con serrature multipunto e pannelli esterni personalizzabili in diverse finiture, per unire un'elevata protezione a un buon risultato estetico.">
+<meta name="description" content="Porte blindate e soluzioni di protezione per l'ingresso: pannelli personalizzabili, strutture rinforzate, cilindri di sicurezza e posa curata.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;500;600;700;800;900&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -47,6 +47,39 @@ tailwind.config = {
   .spec-tick.tr { top: -7px; right: -7px; border-top: 2px solid currentColor; border-right: 2px solid currentColor; }
   .spec-tick.bl { bottom: -7px; left: -7px; border-bottom: 2px solid currentColor; border-left: 2px solid currentColor; }
   .spec-tick.br { bottom: -7px; right: -7px; border-bottom: 2px solid currentColor; border-right: 2px solid currentColor; }
+
+  .security-products-intro {
+    display: grid;
+    gap: 0.65rem;
+    max-width: 44rem;
+    margin-bottom: 1.75rem;
+  }
+  .security-product-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 0.75rem 0.75rem 1.25rem;
+    border: 1px solid #eaeef4;
+    border-radius: 1.5rem;
+    background: #fff;
+    box-shadow: 0 14px 36px rgba(15, 45, 131, 0.08);
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  }
+  .security-product-card:hover {
+    transform: translateY(-4px);
+    border-color: #cbd7f1;
+    box-shadow: 0 20px 44px rgba(15, 45, 131, 0.13);
+  }
+  .security-product-card__body { padding: 0 0.35rem; }
+  .security-product-card__tag {
+    display: inline-flex;
+    margin-top: 1rem;
+    color: #3454c4;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
 </style>
 </head>
 <body class="antialiased">
@@ -92,13 +125,13 @@ tailwind.config = {
 <!-- HEADER CATEGORIA -->
 <section class="pt-28 pb-10 md:pt-36 md:pb-14 bg-brand-50">
   <div class="max-w-5xl mx-auto px-6 md:px-10">
-    <a href="index.html" class="inline-flex items-center gap-2 text-sm font-medium text-brand-400 hover:text-brand-900 transition-colors mb-6">
+    <a href="index.html" class="product-back-button inline-flex items-center gap-2 text-sm font-medium transition-all mb-6">
       <iconify-icon icon="lucide:arrow-left" width="16"></iconify-icon>
       Torna al sito
     </a>
     <p class="text-xs font-semibold tracking-widest uppercase text-accent mb-3">Prodotti &middot; 04/09</p>
     <h1 class="font-display font-bold text-4xl md:text-6xl tracking-tight max-w-2xl mb-3">Porte Blindate</h1>
-    <p class="text-sm font-medium text-brand-400">Sicurezza Certificata</p>
+    <p class="text-sm font-medium text-brand-400">Protezione &middot; Design &middot; Posa su misura</p>
   </div>
 </section>
 
@@ -114,60 +147,82 @@ tailwind.config = {
         <img src="images/porte-blindate-intro-wide.jpg" width="1800" height="766" fetchpriority="high" alt="Gamma di porte blindate con differenti pannelli effetto legno" class="w-full h-full object-cover">
       </div>
     </div>
-    <p class="text-brand-400 leading-relaxed max-w-2xl mb-10 text-base md:text-lg">Porte blindate certificate per la sicurezza della tua abitazione, con serrature multipunto e pannelli esterni personalizzabili in diverse finiture, per unire un'elevata protezione a un buon risultato estetico.</p>
+    <p class="text-brand-400 leading-relaxed max-w-2xl mb-10 text-base md:text-lg">Soluzioni per rendere l'ingresso più protetto senza rinunciare all'estetica: porte installate, pannelli in diverse finiture, struttura interna e componenti di chiusura. Ogni immagine qui sotto mostra esattamente la soluzione descritta.</p>
 
-    <h2 class="font-display font-semibold text-2xl mb-6">Prodotti disponibili</h2>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 mb-16">
-      <div class="group">
-        <div class="overflow-hidden rounded-2xl h-56 md:h-64 bg-brand-50 border border-brand-100">
-          <img src="images/foto-151.jpg" loading="lazy" alt="Pannelli personalizzabili" class="w-full h-full object-contain p-3 transition-transform duration-500 ease-out group-hover:scale-105">
+    <div class="security-products-intro">
+      <p class="text-xs font-semibold tracking-widest uppercase text-accent">Gamma e componenti</p>
+      <h2 class="font-display font-semibold text-3xl md:text-4xl">Soluzioni per ogni ingresso</h2>
+      <p class="text-sm md:text-base text-brand-400 leading-relaxed">Dall'aspetto del pannello ai dettagli di sicurezza, scegliamo insieme la configurazione più adatta all'abitazione e curiamo la posa.</p>
+    </div>
+    <div class="security-product-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 mb-16">
+      <article class="security-product-card group">
+        <div class="product-card-media overflow-hidden rounded-2xl bg-brand-50 border border-brand-100">
+          <img src="images/foto-019.jpg" loading="lazy" alt="Porta blindata moderna rossa con inserti geometrici" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105">
         </div>
-        <h3 class="font-display font-semibold text-lg mt-4">Pannelli personalizzabili</h3>
-        <p class="text-sm text-brand-400 mt-1">Numerose finiture esterne</p>
-      </div>
-      <div class="group">
-        <div class="overflow-hidden rounded-2xl h-56 md:h-64 bg-brand-50 border border-brand-100">
-          <img src="images/foto-192.jpg" loading="lazy" alt="Struttura blindata" class="w-full h-full object-contain p-3 transition-transform duration-500 ease-out group-hover:scale-105">
+        <div class="security-product-card__body">
+          <span class="security-product-card__tag">Design contemporaneo</span>
+          <h3 class="font-display font-semibold text-xl mt-1">Porta blindata moderna</h3>
+          <p class="text-sm text-brand-400 mt-1">Pannello rosso con inserti geometrici</p>
         </div>
-        <h3 class="font-display font-semibold text-lg mt-4">Struttura blindata</h3>
-        <p class="text-sm text-brand-400 mt-1">Serratura multipunto certificata</p>
-      </div>
-      <div class="group">
-        <div class="overflow-hidden rounded-2xl h-56 md:h-64 bg-brand-50 border border-brand-100">
-          <img src="images/foto-028.jpg" loading="lazy" alt="Portoncino bordeaux" class="w-full h-full object-contain p-3 transition-transform duration-500 ease-out group-hover:scale-105">
+      </article>
+      <article class="security-product-card group">
+        <div class="product-card-media overflow-hidden rounded-2xl bg-brand-50 border border-brand-100">
+          <img src="images/porta-blindata-intro.jpg" loading="lazy" alt="Porta blindata installata con pannello effetto legno" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105">
         </div>
-        <h3 class="font-display font-semibold text-lg mt-4">Portoncino bordeaux</h3>
-        <p class="text-sm text-brand-400 mt-1">Pannello e finiture su misura</p>
-      </div>
-      <div class="group">
-        <div class="overflow-hidden rounded-2xl h-56 md:h-64 bg-brand-50 border border-brand-100">
-          <img src="images/foto-041.jpg" loading="lazy" alt="Serratura di sicurezza" class="w-full h-full object-contain p-3 transition-transform duration-500 ease-out group-hover:scale-105">
+        <div class="security-product-card__body">
+          <span class="security-product-card__tag">Realizzazione</span>
+          <h3 class="font-display font-semibold text-xl mt-1">Porta effetto legno</h3>
+          <p class="text-sm text-brand-400 mt-1">Ingresso installato con pannello coordinato</p>
         </div>
-        <h3 class="font-display font-semibold text-lg mt-4">Serratura di sicurezza</h3>
-        <p class="text-sm text-brand-400 mt-1">Cilindro europeo antieffrazione</p>
-      </div>
-      <div class="group">
-        <div class="overflow-hidden rounded-2xl h-56 md:h-64 bg-brand-50 border border-brand-100">
-          <img src="images/foto-091.jpg" loading="lazy" alt="Ingresso con vetrata" class="w-full h-full object-contain p-3 transition-transform duration-500 ease-out group-hover:scale-105">
+      </article>
+      <article class="security-product-card group">
+        <div class="product-card-media product-card-media--contain overflow-hidden rounded-2xl bg-brand-50 border border-brand-100">
+          <img src="images/foto-151.jpg" loading="lazy" alt="Cinque pannelli per porte blindate in finiture effetto legno" class="w-full h-full transition-transform duration-500 ease-out group-hover:scale-105">
         </div>
-        <h3 class="font-display font-semibold text-lg mt-4">Ingresso con vetrata</h3>
-        <p class="text-sm text-brand-400 mt-1">Blindato con vetro laterale</p>
-      </div>
-      <div class="group">
-        <div class="overflow-hidden rounded-2xl h-56 md:h-64 bg-brand-50 border border-brand-100">
-          <img src="images/foto-159.jpg" loading="lazy" alt="Inferriate di sicurezza" class="w-full h-full object-contain p-3 transition-transform duration-500 ease-out group-hover:scale-105">
+        <div class="security-product-card__body">
+          <span class="security-product-card__tag">Finiture</span>
+          <h3 class="font-display font-semibold text-xl mt-1">Pannelli personalizzabili</h3>
+          <p class="text-sm text-brand-400 mt-1">Modelli e finiture effetto legno</p>
         </div>
-        <h3 class="font-display font-semibold text-lg mt-4">Inferriate di sicurezza</h3>
-        <p class="text-sm text-brand-400 mt-1">Grate estensibili su misura</p>
-      </div>
+      </article>
+      <article class="security-product-card group">
+        <div class="product-card-media product-card-media--contain overflow-hidden rounded-2xl bg-brand-50 border border-brand-100">
+          <img src="images/foto-192.jpg" loading="lazy" alt="Vista tecnica esplosa della struttura di una porta blindata" class="w-full h-full transition-transform duration-500 ease-out group-hover:scale-105">
+        </div>
+        <div class="security-product-card__body">
+          <span class="security-product-card__tag">Tecnologia</span>
+          <h3 class="font-display font-semibold text-xl mt-1">Struttura della porta</h3>
+          <p class="text-sm text-brand-400 mt-1">Vista esplosa dei componenti interni</p>
+        </div>
+      </article>
+      <article class="security-product-card group">
+        <div class="product-card-media overflow-hidden rounded-2xl bg-brand-50 border border-brand-100">
+          <img src="images/foto-067.jpg" loading="lazy" alt="Dettaglio del cilindro e del defender su porta blindata" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105">
+        </div>
+        <div class="security-product-card__body">
+          <span class="security-product-card__tag">Chiusura</span>
+          <h3 class="font-display font-semibold text-xl mt-1">Cilindro di sicurezza</h3>
+          <p class="text-sm text-brand-400 mt-1">Dettaglio della chiusura con defender</p>
+        </div>
+      </article>
+      <article class="security-product-card group">
+        <div class="product-card-media overflow-hidden rounded-2xl bg-brand-50 border border-brand-100">
+          <img src="images/foto-117.jpg" loading="lazy" alt="Grata di sicurezza a doppia anta" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105">
+        </div>
+        <div class="security-product-card__body">
+          <span class="security-product-card__tag">Protezione aggiuntiva</span>
+          <h3 class="font-display font-semibold text-xl mt-1">Grata di sicurezza a doppia anta</h3>
+          <p class="text-sm text-brand-400 mt-1">Protezione esterna apribile in metallo verniciato</p>
+        </div>
+      </article>
     </div>
 
-    <div class="flex items-center justify-between border-t border-brand-100 pt-8">
-      <a href="infissi-legno.html" class="inline-flex items-center gap-2 text-sm font-medium text-brand-400 hover:text-brand-900 transition-colors">
+    <div class="product-pager flex items-center justify-between border-t border-brand-100 pt-8">
+      <a href="infissi-legno.html" class="product-pager__button inline-flex items-center gap-2 text-sm font-medium transition-all">
         <iconify-icon icon="lucide:arrow-left" width="16"></iconify-icon>
         Infissi in Legno
       </a>
-      <a href="zanzariere.html" class="inline-flex items-center gap-2 text-sm font-medium text-brand-400 hover:text-brand-900 transition-colors">
+      <a href="zanzariere.html" class="product-pager__button inline-flex items-center gap-2 text-sm font-medium transition-all">
         Zanzariere
         <iconify-icon icon="lucide:arrow-right" width="16"></iconify-icon>
       </a>
