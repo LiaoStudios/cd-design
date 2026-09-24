@@ -33,6 +33,9 @@ tailwind.config = {
 </script>
 <style>
   html { scroll-behavior: smooth; }
+  #dropdownMenu { max-height: calc(100vh - 6rem); overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+  #prodottiSubmenu { flex-shrink: 0; }
+  @supports (height: 100dvh) { #dropdownMenu { max-height: calc(100dvh - 6rem); } }
   body { font-family: 'IBM Plex Sans', sans-serif; background:#fff; color:#0f2d83; }
   h1,h2,h3,h4, .font-display { font-family: 'Big Shoulders Display', sans-serif; letter-spacing: -0.005em; }
   .glass-nav {
@@ -53,9 +56,9 @@ tailwind.config = {
 
 <!-- NAVIGATION -->
 <nav class="glass-nav fixed top-0 left-0 right-0 z-50 h-20 border-b border-brand-100">
-  <div class="max-w-7xl mx-auto h-full px-6 md:px-10 flex items-center justify-between">
-    <a href="index.html" class="flex items-center gap-2">
-      <img src="images/logo.jpg" alt="CD Design Porte &amp; Finestre" class="h-10 w-auto object-contain rounded-md transition-transform duration-300 ease-out hover:rotate-[30deg]">
+  <div class="relative max-w-7xl mx-auto h-full px-6 md:px-10 flex items-center justify-end">
+    <a href="index.html" aria-label="CD Design - Home" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-2">
+      <img src="images/logo.jpg" alt="CD Design Porte &amp; Finestre" class="h-[3.75rem] md:h-12 w-auto object-contain rounded-md transition-transform duration-300 ease-out hover:rotate-[30deg]">
     </a>
     <div class="relative">
       <button id="menuBtn" aria-label="Apri menu" aria-expanded="false" class="w-11 h-11 rounded-full border border-brand-100 flex items-center justify-center hover:border-brand-900 transition-colors bg-white/70">
@@ -76,11 +79,11 @@ tailwind.config = {
           <a href="zanzariere.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Zanzariere</a>
           <a href="persiane-scuri-alluminio.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Persiane e Scuri in Alluminio</a>
           <a href="porte-interne.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Porte Interne</a>
-          <a href="tende-caduta-sole.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Tende a Caduta e da Sole</a>
-          <a href="falegnameria.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Falegnameria</a>
+          <a href="tapparelle-alluminio.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Tapparelle in Alluminio</a>
+          <a href="tende-caduta-sole.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Tende da Sole</a>
           </div>
         </div>
-        <a href="index.html#interventi" class="px-4 py-3.5 rounded-xl hover:bg-brand-50 transition-colors text-sm font-medium">Interventi</a>
+        <a href="index.html#realizzazioni" class="px-4 py-3.5 rounded-xl hover:bg-brand-50 transition-colors text-sm font-medium">Realizzazioni</a>
         <a href="index.html#recensioni" class="px-4 py-3.5 rounded-xl hover:bg-brand-50 transition-colors text-sm font-medium">Recensioni</a>
         <a href="index.html#contatti" class="mt-1 bg-brand-900 text-white text-sm font-semibold px-4 py-3.5 rounded-xl text-center hover:-translate-y-0.5 transition-transform">Richiedi Preventivo</a>
       </div>

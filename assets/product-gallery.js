@@ -20,9 +20,6 @@
   function open(image) {
     activeTrigger = image;
     figure.className = 'cd-lightbox__figure';
-    if (image.dataset.lightboxCrop) {
-      figure.classList.add(`cd-lightbox__figure--${image.dataset.lightboxCrop}`);
-    }
     fullImage.src = image.currentSrc || image.src;
     fullImage.alt = image.alt || '';
     caption.textContent = image.alt || '';

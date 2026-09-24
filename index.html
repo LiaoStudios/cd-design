@@ -38,6 +38,9 @@ tailwind.config = {
     --cd-blue-pale: #e8f0ff;
   }
   html { scroll-behavior: smooth; }
+  #dropdownMenu { max-height: calc(100vh - 6rem); overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+  #prodottiSubmenu { flex-shrink: 0; }
+  @supports (height: 100dvh) { #dropdownMenu { max-height: calc(100dvh - 6rem); } }
   body { font-family: 'IBM Plex Sans', sans-serif; background:#fff; color:#0f2d83; }
   h1,h2,h3,h4, .font-display { font-family: 'Big Shoulders Display', sans-serif; letter-spacing: -0.005em; }
 
@@ -370,7 +373,7 @@ tailwind.config = {
 <nav id="siteNav" class="home-nav fixed top-0 left-0 right-0 z-50 h-20 border-b">
   <div class="home-nav__inner max-w-7xl mx-auto h-full px-6 md:px-10 flex items-center">
     <a href="index.html" class="home-nav__brand flex items-center gap-2" aria-label="CD Design - Home">
-      <img src="images/logo.jpg" alt="CD Design Porte &amp; Finestre" class="h-10 w-auto object-contain rounded-md transition-transform duration-300 ease-out hover:rotate-[30deg]">
+      <img src="images/logo.jpg" alt="CD Design Porte &amp; Finestre" class="h-[3.75rem] md:h-12 w-auto object-contain rounded-md transition-transform duration-300 ease-out hover:rotate-[30deg]">
     </a>
     <div class="relative">
       <button id="menuBtn" aria-label="Apri menu" aria-expanded="false" class="w-11 h-11 rounded-full border border-brand-100 flex items-center justify-center hover:border-brand-900 transition-colors bg-white/70">
@@ -391,8 +394,8 @@ tailwind.config = {
           <a href="zanzariere.html" class="px-4 py-2 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Zanzariere</a>
           <a href="persiane-scuri-alluminio.html" class="px-4 py-2 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Persiane e Scuri in Alluminio</a>
           <a href="porte-interne.html" class="px-4 py-2 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Porte Interne</a>
-          <a href="tende-caduta-sole.html" class="px-4 py-2 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Tende a Caduta e da Sole</a>
-          <a href="falegnameria.html" class="px-4 py-2 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Falegnameria</a>
+          <a href="tapparelle-alluminio.html" class="px-4 py-2 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Tapparelle in Alluminio</a>
+          <a href="tende-caduta-sole.html" class="px-4 py-2 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Tende da Sole</a>
           </div>
         </div>
         <a href="#realizzazioni" class="px-4 py-3.5 rounded-xl hover:bg-brand-50 transition-colors text-sm font-medium">Realizzazioni</a>
@@ -489,7 +492,7 @@ tailwind.config = {
             <h3 class="font-display font-semibold text-xl">Comfort Esterno</h3>
             <span class="text-[11px] font-medium bg-brand-50 border border-brand-100 rounded-full px-3 py-1 text-brand-400">Zanzariere · Tende · Scuri</span>
           </div>
-          <p class="text-sm text-brand-400 mb-4 leading-relaxed">Zanzariere su misura, tende da sole Bettio con motorizzazione Somfy, scuri e persiane in ogni finitura.</p>
+          <p class="text-sm text-brand-400 mb-4 leading-relaxed">Zanzariere su misura, tapparelle in alluminio, tende da sole Bettio con motorizzazione Somfy, scuri e persiane in ogni finitura.</p>
           <ul class="space-y-2 mb-6">
             <li class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check-circle" class="text-emerald-600" width="16"></iconify-icon> Automazioni Somfy motorizzate</li>
             <li class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check-circle" class="text-emerald-600" width="16"></iconify-icon> Sopralluogo e consulenza gratuiti</li>
@@ -497,6 +500,15 @@ tailwind.config = {
           <a href="#contatti" class="inline-flex items-center gap-2 text-sm font-semibold hover:gap-3 transition-all">Richiedi un Preventivo <iconify-icon icon="lucide:arrow-right" width="16"></iconify-icon></a>
         </div>
       </div>
+    </div>
+
+    <div class="mt-12 md:mt-16 rounded-3xl bg-brand-900 text-white p-8 md:p-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6 reveal-on-scroll">
+      <div class="max-w-2xl">
+        <p class="text-xs font-semibold tracking-widest uppercase text-white/70 mb-3">Servizio</p>
+        <h3 class="font-display font-bold text-3xl md:text-4xl tracking-tight mb-3">Ristrutturazione completa chiavi in mano</h3>
+        <p class="text-white/80 leading-relaxed">Dal sopralluogo alla consegna: ci occupiamo dell'intero intervento di ristrutturazione della tua casa, con un unico referente che coordina lavori, materiali e tempi.</p>
+      </div>
+      <a href="#contatti" class="shrink-0 bg-white text-brand-900 text-center font-medium px-7 py-4 rounded-full shadow-lg hover:-translate-y-1 transition-transform">Richiedi un Preventivo</a>
     </div>
   </div>
 </section>
@@ -567,10 +579,6 @@ tailwind.config = {
       <button class="gitem" data-cat="infissi" data-full="images/foto-056.jpg" data-caption="Sostituzione infissi">
         <img src="images/foto-056.jpg" loading="lazy" alt="Sostituzione infissi">
         <span class="gitem-label">Sostituzione infissi</span>
-      </button>
-      <button class="gitem" data-cat="vetrate" data-full="images/foto-074.jpg" data-caption="Serramenti per negozio">
-        <img src="images/foto-074.jpg" loading="lazy" alt="Serramenti per negozio">
-        <span class="gitem-label">Serramenti per negozio</span>
       </button>
       <button class="gitem" data-cat="porte" data-full="images/foto-019.jpg" data-caption="Porta d'ingresso">
         <img src="images/foto-019.jpg" loading="lazy" alt="Porta d'ingresso">
@@ -764,7 +772,8 @@ tailwind.config = {
           <select name="servizio" class="field">
             <option>Infissi in alluminio, PVC o legno</option>
             <option>Porte blindate e cancelli di sicurezza</option>
-            <option>Zanzariere, tende da sole, scuri e persiane</option>
+            <option>Zanzariere, tapparelle, tende da sole, scuri e persiane</option>
+            <option>Ristrutturazione completa chiavi in mano</option>
             <option>Altro / non so ancora</option>
           </select>
         </div>

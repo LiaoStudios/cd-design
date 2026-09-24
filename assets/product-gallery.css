@@ -133,14 +133,6 @@
   font-size: 0.95rem;
 }
 
-.cd-lightbox__figure--arched-window .cd-lightbox__image {
-  width: min(92vw, 80.56vh, 64rem);
-  height: min(86.8vw, 76vh, 60.38rem);
-  max-height: none;
-  object-fit: cover;
-  object-position: center bottom;
-}
-
 .cd-lightbox__close {
   position: absolute;
   top: max(1rem, env(safe-area-inset-top));

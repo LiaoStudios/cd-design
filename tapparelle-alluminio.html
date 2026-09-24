@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Falegnameria | CD Design Porte &amp; Finestre</title>
-<meta name="description" content="Porte, infissi, finiture e ripristini in legno su misura a Castel Maggiore e Bologna, con consulenza, adattamento e posa CD Design.">
+<title>Tapparelle in Alluminio | CD Design Porte &amp; Finestre</title>
+<meta name="description" content="Tapparelle in alluminio in ampia scelta di colori e finiture, per oscurare, isolare e proteggere le finestre di casa.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;500;600;700;800;900&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -33,6 +33,9 @@ tailwind.config = {
 </script>
 <style>
   html { scroll-behavior: smooth; }
+  #dropdownMenu { max-height: calc(100vh - 6rem); overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+  #prodottiSubmenu { flex-shrink: 0; }
+  @supports (height: 100dvh) { #dropdownMenu { max-height: calc(100dvh - 6rem); } }
   body { font-family: 'IBM Plex Sans', sans-serif; background:#fff; color:#0f2d83; }
   h1,h2,h3,h4, .font-display { font-family: 'Big Shoulders Display', sans-serif; letter-spacing: -0.005em; }
   .glass-nav {
@@ -53,9 +56,9 @@ tailwind.config = {
 
 <!-- NAVIGATION -->
 <nav class="glass-nav fixed top-0 left-0 right-0 z-50 h-20 border-b border-brand-100">
-  <div class="max-w-7xl mx-auto h-full px-6 md:px-10 flex items-center justify-between">
-    <a href="index.html" class="flex items-center gap-2">
-      <img src="images/logo.jpg" alt="CD Design Porte &amp; Finestre" class="h-10 w-auto object-contain rounded-md transition-transform duration-300 ease-out hover:rotate-[30deg]">
+  <div class="relative max-w-7xl mx-auto h-full px-6 md:px-10 flex items-center justify-end">
+    <a href="index.html" aria-label="CD Design - Home" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-2">
+      <img src="images/logo.jpg" alt="CD Design Porte &amp; Finestre" class="h-[3.75rem] md:h-12 w-auto object-contain rounded-md transition-transform duration-300 ease-out hover:rotate-[30deg]">
     </a>
     <div class="relative">
       <button id="menuBtn" aria-label="Apri menu" aria-expanded="false" class="w-11 h-11 rounded-full border border-brand-100 flex items-center justify-center hover:border-brand-900 transition-colors bg-white/70">
@@ -76,11 +79,11 @@ tailwind.config = {
           <a href="zanzariere.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Zanzariere</a>
           <a href="persiane-scuri-alluminio.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Persiane e Scuri in Alluminio</a>
           <a href="porte-interne.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Porte Interne</a>
-          <a href="tende-caduta-sole.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Tende a Caduta e da Sole</a>
-          <a href="falegnameria.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Falegnameria</a>
+          <a href="tapparelle-alluminio.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Tapparelle in Alluminio</a>
+          <a href="tende-caduta-sole.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Tende da Sole</a>
           </div>
         </div>
-        <a href="index.html#interventi" class="px-4 py-3.5 rounded-xl hover:bg-brand-50 transition-colors text-sm font-medium">Interventi</a>
+        <a href="index.html#realizzazioni" class="px-4 py-3.5 rounded-xl hover:bg-brand-50 transition-colors text-sm font-medium">Realizzazioni</a>
         <a href="index.html#recensioni" class="px-4 py-3.5 rounded-xl hover:bg-brand-50 transition-colors text-sm font-medium">Recensioni</a>
         <a href="index.html#contatti" class="mt-1 bg-brand-900 text-white text-sm font-semibold px-4 py-3.5 rounded-xl text-center hover:-translate-y-0.5 transition-transform">Richiedi Preventivo</a>
       </div>
@@ -96,9 +99,9 @@ tailwind.config = {
       <iconify-icon icon="lucide:arrow-left" width="16"></iconify-icon>
       Torna al sito
     </a>
-    <p class="text-xs font-semibold tracking-widest uppercase text-accent mb-3">Prodotti &middot; 09/09</p>
-    <h1 class="font-display font-bold text-4xl md:text-6xl tracking-tight max-w-2xl mb-3">Falegnameria</h1>
-    <p class="text-sm font-medium text-brand-400">Lavorazioni Su Misura</p>
+    <p class="text-xs font-semibold tracking-widest uppercase text-accent mb-3">Prodotti &middot; 08/09</p>
+    <h1 class="font-display font-bold text-4xl md:text-6xl tracking-tight max-w-2xl mb-3">Tapparelle in Alluminio</h1>
+    <p class="text-sm font-medium text-brand-400">Oscuramento &middot; Isolamento</p>
   </div>
 </section>
 
@@ -110,44 +113,30 @@ tailwind.config = {
       <span class="spec-tick tr text-brand-900/50"></span>
       <span class="spec-tick bl text-brand-900/50"></span>
       <span class="spec-tick br text-brand-900/50"></span>
-      <div class="product-intro-media" style="--intro-position: 50% 48%;">
-      <img src="images/falegnameria-intro.jpg" width="1800" height="1254" fetchpriority="high" alt="Ambiente su misura con porta, infisso e pannellature in legno" class="w-full h-full object-cover">
+      <div class="product-intro-media" style="--intro-position: 50% 40%;">
+      <img src="images/foto-163.jpg" width="669" height="990" fetchpriority="high" alt="Stecche di tapparella in alluminio in vari colori" class="w-full h-full object-cover">
     </div>
     </div>
-    <p class="text-brand-400 leading-relaxed max-w-2xl mb-10 text-base md:text-lg">Porte, infissi e finiture in legno su misura, con adattamenti, manutenzione e ripristini pensati per integrarsi con lo stile della casa e conservare nel tempo il calore naturale del materiale.</p>
+    <p class="text-brand-400 leading-relaxed max-w-2xl mb-10 text-base md:text-lg">Tapparelle in alluminio in ampia scelta di colori e finiture, per oscurare, isolare e proteggere le finestre di casa.</p>
 
     <h2 class="font-display font-semibold text-2xl mb-6">Prodotti disponibili</h2>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 mb-16">
       <div class="group">
         <div class="product-card-media overflow-hidden rounded-2xl h-56 md:h-64 bg-brand-50 border border-brand-100">
-          <img src="images/falegnameria-porta-legno.jpg" loading="lazy" alt="Porta in legno naturale inserita in un ambiente contemporaneo" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105">
+          <img src="images/foto-163.jpg" loading="lazy" alt="Tapparelle in alluminio in vari colori" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105">
         </div>
-        <h3 class="font-display font-semibold text-lg mt-4">Porte in legno su misura</h3>
-        <p class="text-sm text-brand-400 mt-1">Essenze, finiture e adattamenti per ogni ambiente</p>
-      </div>
-      <div class="group">
-        <div class="product-card-media overflow-hidden rounded-2xl h-56 md:h-64 bg-brand-50 border border-brand-100">
-          <img src="images/falegnameria-infisso-legno.jpg" loading="lazy" alt="Infisso con finitura legno installato su misura" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105">
-        </div>
-        <h3 class="font-display font-semibold text-lg mt-4">Infissi e ripristini in legno</h3>
-        <p class="text-sm text-brand-400 mt-1">Adattamento, manutenzione e recupero delle finiture</p>
-      </div>
-      <div class="group">
-        <div class="product-card-media overflow-hidden rounded-2xl h-56 md:h-64 bg-brand-50 border border-brand-100">
-          <img src="images/falegnameria-finiture-legno.jpg" loading="lazy" alt="Dettaglio di una pannellatura in legno con maniglia" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105">
-        </div>
-        <h3 class="font-display font-semibold text-lg mt-4">Finiture e pannellature</h3>
-        <p class="text-sm text-brand-400 mt-1">Rivestimenti e dettagli coordinati all'arredo</p>
+        <h3 class="font-display font-semibold text-lg mt-4">Tapparelle in alluminio</h3>
+        <p class="text-sm text-brand-400 mt-1">Ampia scelta di colori e finiture</p>
       </div>
     </div>
 
     <div class="product-pager flex items-center justify-between border-t border-brand-100 pt-8">
-      <a href="tende-caduta-sole.html" class="product-pager__button inline-flex items-center gap-2 text-sm font-medium transition-all">
+      <a href="porte-interne.html" class="product-pager__button inline-flex items-center gap-2 text-sm font-medium transition-all">
         <iconify-icon icon="lucide:arrow-left" width="16"></iconify-icon>
-        Tende a Caduta e da Sole
+        Porte Interne
       </a>
-      <a href="infissi-pvc.html" class="product-pager__button inline-flex items-center gap-2 text-sm font-medium transition-all">
-        Infissi in PVC
+      <a href="tende-caduta-sole.html" class="product-pager__button inline-flex items-center gap-2 text-sm font-medium transition-all">
+        Tende da Sole
         <iconify-icon icon="lucide:arrow-right" width="16"></iconify-icon>
       </a>
     </div>

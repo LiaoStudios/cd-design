@@ -11,8 +11,8 @@ PRODUCT_PAGES = [
     "zanzariere.html",
     "persiane-scuri-alluminio.html",
     "porte-interne.html",
+    "tapparelle-alluminio.html",
     "tende-caduta-sole.html",
-    "falegnameria.html",
 ]
 
 
@@ -131,21 +131,13 @@ class SiteContractTests(unittest.TestCase):
         self.assertIn("Soluzioni per ogni ingresso", html)
         self.assertIn("security-product-card", html)
 
-    def test_arched_window_hides_embedded_heading_in_the_lightbox(self):
+    def test_arched_window_photo_has_no_embedded_heading(self):
+        from PIL import Image
         html = self.read("infissi-legno.html")
-        js = self.read("assets/product-gallery.js")
-        css = self.read("assets/product-gallery.css")
-        self.assertRegex(html, r'foto-121\.jpg[^>]+data-lightbox-crop="arched-window"')
-        self.assertIn("image.dataset.lightboxCrop", js)
-        self.assertIn("cd-lightbox__figure--arched-window", css)
-
-    def test_falegnameria_content_is_wood_focused(self):
-        html = self.read("falegnameria.html")
-        for unrelated in ("Parapetti e balaustre", "Ringhiere in vetro", "Strutture in ferro"):
-            self.assertNotIn(unrelated, html)
-        self.assertIn("Porte in legno su misura", html)
-        self.assertIn("Infissi e ripristini in legno", html)
-        self.assertIn("Finiture e pannellature", html)
+        self.assertRegex(html, r'foto-121\.jpg[^>]+alt="Finestre ad arco"')
+        self.assertNotIn("data-lightbox-crop", html)
+        with Image.open(ROOT / "images/foto-121.jpg") as image:
+            self.assertEqual(image.size, (1296, 1200))
 
     def test_incorrect_wood_shutter_card_is_removed(self):
         html = self.read("infissi-legno.html")
@@ -159,10 +151,66 @@ class SiteContractTests(unittest.TestCase):
             "zanzariere.html": "images/zanzariere-bettio-neoscenica-wide.jpg",
             "persiane-scuri-alluminio.html": "images/persiane-alluminio-intro.jpg",
             "porte-interne.html": "images/porte-interne-intro.jpg",
-            "falegnameria.html": "images/falegnameria-intro.jpg",
         }
         for page, image in expected.items():
             self.assertIn(f'src="{image}"', self.read(page), page)
+
+    def test_supplier_names_appear_in_page_titles(self):
+        self.assertIn("Zanzariere Bettio</h1>", self.read("zanzariere.html"))
+        self.assertIn("Porte Interne Tecnoporte</h1>", self.read("porte-interne.html"))
+
+    def test_pvc_products_use_requested_names(self):
+        html = self.read("infissi-pvc.html")
+        self.assertIn("PVC a 6 camere", html)
+        self.assertIn("3 guarnizioni", html)
+        self.assertIn("Salamander Green Evolution 76", html)
+        self.assertNotIn("Gealan", html)
+
+    def test_tapparelle_have_their_own_section_before_tende(self):
+        tapparelle = self.read("tapparelle-alluminio.html")
+        tende = self.read("tende-caduta-sole.html")
+        self.assertIn("Tapparelle in Alluminio</h1>", tapparelle)
+        self.assertIn('href="tende-caduta-sole.html"', tapparelle)
+        self.assertNotIn("Tapparelle", tende.replace("Tapparelle in Alluminio", ""))
+        for page in ["index.html", *PRODUCT_PAGES]:
+            html = self.read(page)
+            self.assertLess(html.index('href="tapparelle-alluminio.html"'), html.index('href="tende-caduta-sole.html"'), page)
+
+    def test_home_offers_turnkey_renovation_service(self):
+        html = self.read("index.html")
+        self.assertIn("Ristrutturazione completa chiavi in mano", html)
+
+    def test_nav_logo_is_enlarged_and_always_centered(self):
+        for page in ["index.html", *PRODUCT_PAGES]:
+            html = self.read(page)
+            self.assertIn("h-[3.75rem] md:h-12 w-auto", html, page)
+            if page != "index.html":
+                self.assertIn("absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2", html, page)
+
+    def test_falegnameria_section_is_removed(self):
+        self.assertFalse((ROOT / "falegnameria.html").exists())
+        for page in ["index.html", *PRODUCT_PAGES]:
+            self.assertNotIn("falegnameria", self.read(page).lower(), page)
+
+    def test_section_is_named_tende_da_sole(self):
+        for page in ["index.html", *PRODUCT_PAGES]:
+            self.assertNotIn("Tende a Caduta e da Sole", self.read(page), page)
+        self.assertIn("Tende da Sole</h1>", self.read("tende-caduta-sole.html"))
+
+    def test_shop_gallery_photo_is_removed(self):
+        self.assertNotIn("Serramenti per negozio", self.read("index.html"))
+
+    def test_wood_page_has_several_photos_and_no_brand_caption(self):
+        html = self.read("infissi-legno.html")
+        self.assertNotIn("Immagine prodotto Pavanello", html)
+        for image in ("legno-vetrate-luminose", "legno-portefinestre-scorrevoli", "legno-porta-finestra-tapparella", "legno-vetrate-tutta-altezza"):
+            self.assertIn(f"images/{image}.jpg", html)
+
+    def test_dropdown_menu_scrolls_instead_of_clipping_the_product_list(self):
+        for page in ["index.html", *PRODUCT_PAGES]:
+            html = self.read(page)
+            self.assertIn("#prodottiSubmenu { flex-shrink: 0; }", html, page)
+            self.assertIn("#dropdownMenu { max-height", html, page)
 
     def test_aluminium_page_does_not_claim_wood_products(self):
         html = self.read("persiane-scuri-alluminio.html")

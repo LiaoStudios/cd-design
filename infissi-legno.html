@@ -33,6 +33,9 @@ tailwind.config = {
 </script>
 <style>
   html { scroll-behavior: smooth; }
+  #dropdownMenu { max-height: calc(100vh - 6rem); overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+  #prodottiSubmenu { flex-shrink: 0; }
+  @supports (height: 100dvh) { #dropdownMenu { max-height: calc(100dvh - 6rem); } }
   body { font-family: 'IBM Plex Sans', sans-serif; background:#fff; color:#0f2d83; }
   h1,h2,h3,h4, .font-display { font-family: 'Big Shoulders Display', sans-serif; letter-spacing: -0.005em; }
   .glass-nav {
@@ -53,9 +56,9 @@ tailwind.config = {
 
 <!-- NAVIGATION -->
 <nav class="glass-nav fixed top-0 left-0 right-0 z-50 h-20 border-b border-brand-100">
-  <div class="max-w-7xl mx-auto h-full px-6 md:px-10 flex items-center justify-between">
-    <a href="index.html" class="flex items-center gap-2">
-      <img src="images/logo.jpg" alt="CD Design Porte &amp; Finestre" class="h-10 w-auto object-contain rounded-md transition-transform duration-300 ease-out hover:rotate-[30deg]">
+  <div class="relative max-w-7xl mx-auto h-full px-6 md:px-10 flex items-center justify-end">
+    <a href="index.html" aria-label="CD Design - Home" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-2">
+      <img src="images/logo.jpg" alt="CD Design Porte &amp; Finestre" class="h-[3.75rem] md:h-12 w-auto object-contain rounded-md transition-transform duration-300 ease-out hover:rotate-[30deg]">
     </a>
     <div class="relative">
       <button id="menuBtn" aria-label="Apri menu" aria-expanded="false" class="w-11 h-11 rounded-full border border-brand-100 flex items-center justify-center hover:border-brand-900 transition-colors bg-white/70">
@@ -76,11 +79,11 @@ tailwind.config = {
           <a href="zanzariere.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Zanzariere</a>
           <a href="persiane-scuri-alluminio.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Persiane e Scuri in Alluminio</a>
           <a href="porte-interne.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Porte Interne</a>
-          <a href="tende-caduta-sole.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Tende a Caduta e da Sole</a>
-          <a href="falegnameria.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Falegnameria</a>
+          <a href="tapparelle-alluminio.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Tapparelle in Alluminio</a>
+          <a href="tende-caduta-sole.html" class="px-4 py-2.5 rounded-lg hover:bg-brand-50 text-sm text-brand-400 hover:text-brand-900 transition-colors">Tende da Sole</a>
           </div>
         </div>
-        <a href="index.html#interventi" class="px-4 py-3.5 rounded-xl hover:bg-brand-50 transition-colors text-sm font-medium">Interventi</a>
+        <a href="index.html#realizzazioni" class="px-4 py-3.5 rounded-xl hover:bg-brand-50 transition-colors text-sm font-medium">Realizzazioni</a>
         <a href="index.html#recensioni" class="px-4 py-3.5 rounded-xl hover:bg-brand-50 transition-colors text-sm font-medium">Recensioni</a>
         <a href="index.html#contatti" class="mt-1 bg-brand-900 text-white text-sm font-semibold px-4 py-3.5 rounded-xl text-center hover:-translate-y-0.5 transition-transform">Richiedi Preventivo</a>
       </div>
@@ -110,8 +113,8 @@ tailwind.config = {
       <span class="spec-tick tr text-brand-900/50"></span>
       <span class="spec-tick bl text-brand-900/50"></span>
       <span class="spec-tick br text-brand-900/50"></span>
-      <div class="product-intro-media" style="--intro-position: 50% 58%;">
-        <img src="images/foto-167.jpg" width="1400" height="1050" fetchpriority="high" alt="Composizione di finestre in legno in forme e finiture differenti" class="w-full h-full object-cover">
+      <div class="product-intro-media" style="--intro-position: 50% 55%;">
+        <img src="images/infissi-legno-pavanello.jpg" width="1600" height="1068" fetchpriority="high" alt="Interno luminoso con finestre e porte-finestre in legno Pavanello" class="w-full h-full object-cover">
       </div>
     </div>
     <p class="text-brand-400 leading-relaxed max-w-2xl mb-10 text-base md:text-lg">Finestre in legno massello o lamellare, per chi cerca calore naturale e un'estetica senza tempo senza rinunciare a isolamento e tenuta. Ogni serramento viene trattato per resistere nel tempo agli agenti atmosferici.</p>
@@ -134,10 +137,38 @@ tailwind.config = {
       </div>
       <div class="group">
         <div class="product-card-media overflow-hidden rounded-2xl h-56 md:h-64 bg-brand-50 border border-brand-100">
-          <img src="images/foto-121.jpg" loading="lazy" alt="Finestre ad arco" data-lightbox-crop="arched-window" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105">
+          <img src="images/foto-121.jpg" loading="lazy" alt="Finestre ad arco" class="w-full h-full object-cover object-[50%_12%] transition-transform duration-500 ease-out group-hover:scale-105">
         </div>
         <h3 class="font-display font-semibold text-lg mt-4">Finestre ad arco</h3>
         <p class="text-sm text-brand-400 mt-1">Forme speciali su disegno</p>
+      </div>
+      <div class="group">
+        <div class="product-card-media overflow-hidden rounded-2xl h-56 md:h-64 bg-brand-50 border border-brand-100">
+          <img src="images/legno-vetrate-luminose.jpg" loading="lazy" alt="Finestre in legno con vista sul giardino" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105">
+        </div>
+        <h3 class="font-display font-semibold text-lg mt-4">Finestre con vista sul verde</h3>
+        <p class="text-sm text-brand-400 mt-1">Luce naturale in ogni ambiente</p>
+      </div>
+      <div class="group">
+        <div class="product-card-media overflow-hidden rounded-2xl h-56 md:h-64 bg-brand-50 border border-brand-100">
+          <img src="images/legno-portefinestre-scorrevoli.jpg" loading="lazy" alt="Porte-finestre scorrevoli in legno" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105">
+        </div>
+        <h3 class="font-display font-semibold text-lg mt-4">Porte-finestre scorrevoli</h3>
+        <p class="text-sm text-brand-400 mt-1">Grandi aperture verso l'esterno</p>
+      </div>
+      <div class="group">
+        <div class="product-card-media overflow-hidden rounded-2xl h-56 md:h-64 bg-brand-50 border border-brand-100">
+          <img src="images/legno-porta-finestra-tapparella.jpg" loading="lazy" alt="Porta-finestra in legno a doppia anta con tapparella" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105">
+        </div>
+        <h3 class="font-display font-semibold text-lg mt-4">Porta-finestra con tapparella</h3>
+        <p class="text-sm text-brand-400 mt-1">Doppia anta su misura</p>
+      </div>
+      <div class="group">
+        <div class="product-card-media overflow-hidden rounded-2xl h-56 md:h-64 bg-brand-50 border border-brand-100">
+          <img src="images/legno-vetrate-tutta-altezza.jpg" loading="lazy" alt="Finestre in legno a tutta altezza" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105">
+        </div>
+        <h3 class="font-display font-semibold text-lg mt-4">Finestre a tutta altezza</h3>
+        <p class="text-sm text-brand-400 mt-1">Più luce negli ambienti living</p>
       </div>
     </div>
 
