@@ -8,6 +8,7 @@ PRODUCT_PAGES = [
     "infissi-alluminio.html",
     "infissi-legno.html",
     "porte-blindate.html",
+    "inferiate.html",
     "zanzariere.html",
     "persiane-scuri-alluminio.html",
     "porte-interne.html",
@@ -107,9 +108,11 @@ class SiteContractTests(unittest.TestCase):
     def test_correct_product_photos_match_wood_windows_and_security_products(self):
         wood = self.read("infissi-legno.html")
         security = self.read("porte-blindate.html")
+        inferiate = self.read("inferiate.html")
         self.assertRegex(wood, r'foto-167\.jpg[^>]+alt="Finestre in legno"')
         self.assertRegex(wood, r'foto-121\.jpg[^>]+alt="Finestre ad arco"')
-        self.assertRegex(security, r'foto-117\.jpg[^>]+alt="Grata di sicurezza a doppia anta"')
+        self.assertRegex(inferiate, r'foto-117\.jpg[^>]+alt="Grata di sicurezza a doppia anta"')
+        self.assertNotIn("foto-117.jpg", security)
         self.assertNotIn("Ingresso con vetrata", security)
 
     def test_armored_door_catalog_copy_matches_the_selected_images(self):
@@ -120,13 +123,12 @@ class SiteContractTests(unittest.TestCase):
             "images/foto-151.jpg": ("Pannelli personalizzabili", "Modelli e finiture effetto legno"),
             "images/foto-192.jpg": ("Struttura della porta", "Vista esplosa dei componenti interni"),
             "images/foto-067.jpg": ("Cilindro di sicurezza", "Dettaglio della chiusura con defender"),
-            "images/foto-117.jpg": ("Grata di sicurezza a doppia anta", "Protezione esterna apribile in metallo verniciato"),
         }
         for image, (title, copy) in expected.items():
             self.assertIn(f'src="{image}"', html)
             self.assertIn(title, html)
             self.assertIn(copy, html)
-        for stale_image in ("images/foto-028.jpg", "images/foto-041.jpg", "images/foto-159.jpg"):
+        for stale_image in ("images/foto-028.jpg", "images/foto-041.jpg", "images/foto-159.jpg", "images/foto-117.jpg"):
             self.assertNotIn(stale_image, html)
         self.assertIn("Soluzioni per ogni ingresso", html)
         self.assertIn("security-product-card", html)
@@ -211,6 +213,20 @@ class SiteContractTests(unittest.TestCase):
             html = self.read(page)
             self.assertIn("#prodottiSubmenu { flex-shrink: 0; }", html, page)
             self.assertIn("#dropdownMenu { max-height", html, page)
+
+    def test_inferiate_page_exists_with_products_and_nav_link(self):
+        html = self.read("inferiate.html")
+        self.assertIn("Inferiate</h1>", html)
+        for image in ("inferriata-doppia-anta-griglia", "inferriata-doppia-anta-reticolo"):
+            self.assertIn(f"images/{image}.jpg", html)
+        self.assertRegex(html, r'foto-117\.jpg[^>]+alt="Grata di sicurezza a doppia anta"')
+        for page in ["index.html", *PRODUCT_PAGES]:
+            self.assertIn('href="inferiate.html"', self.read(page), page)
+
+    def test_tende_da_sole_page_has_new_awning_products(self):
+        html = self.read("tende-caduta-sole.html")
+        for image in ("tenda-sole-motorizzata-antracite", "tenda-sole-a-righe"):
+            self.assertIn(f"images/{image}.jpg", html)
 
     def test_aluminium_page_does_not_claim_wood_products(self):
         html = self.read("persiane-scuri-alluminio.html")
