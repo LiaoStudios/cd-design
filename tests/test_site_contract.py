@@ -228,6 +228,15 @@ class SiteContractTests(unittest.TestCase):
         for image in ("tenda-sole-motorizzata-antracite", "tenda-sole-a-righe"):
             self.assertIn(f"images/{image}.jpg", html)
 
+    def test_iubenda_widget_is_loaded_in_head_of_every_page(self):
+        tag = '<script type="text/javascript" src="https://embeds.iubenda.com/widgets/5c360cf1-d263-40f5-886e-3d1045f3835b.js"></script>'
+        pages = sorted(path.name for path in ROOT.glob("*.html"))
+        self.assertIn("404.html", pages)
+        for page in pages:
+            html = self.read(page)
+            self.assertEqual(html.count(tag), 1, page)
+            self.assertLess(html.index(tag), html.index("</head>"), page)
+
     def test_aluminium_page_does_not_claim_wood_products(self):
         html = self.read("persiane-scuri-alluminio.html")
         self.assertNotIn("Scuri in legno", html)
