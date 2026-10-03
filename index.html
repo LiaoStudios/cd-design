@@ -1084,27 +1084,6 @@ tailwind.config = {
     show(0); restart();
   })();
 
-  /* ---- Banner cookie ---- */
-  (function () {
-    const KEY = 'cd_cookie_consent';
-    let stored = null;
-    try { stored = localStorage.getItem(KEY); } catch (e) {}
-    if (stored) return;
-    const banner = document.createElement('div');
-    banner.className = 'fixed bottom-0 left-0 right-0 z-[70] bg-white border-t border-brand-100 shadow-2xl';
-    banner.setAttribute('role', 'dialog');
-    banner.setAttribute('aria-label', 'Informativa cookie');
-    banner.innerHTML =
-      '<div class="max-w-7xl mx-auto px-6 md:px-10 py-5 flex flex-col md:flex-row md:items-center gap-4 md:gap-8">' +
-        '<p class="text-sm text-brand-400 leading-relaxed flex-1">Questo sito utilizza esclusivamente cookie tecnici necessari al suo funzionamento. Non usiamo cookie di profilazione. Consulta la <a href="cookie.html" class="underline hover:text-brand-900">Cookie Policy</a> e la <a href="privacy.html" class="underline hover:text-brand-900">Privacy Policy</a>.</p>' +
-        '<button id="cookieOk" class="shrink-0 bg-brand-900 text-white text-sm font-medium px-6 py-3 rounded-full hover:-translate-y-0.5 transition-transform">Ho capito</button>' +
-      '</div>';
-    document.body.appendChild(banner);
-    document.getElementById('cookieOk').addEventListener('click', () => {
-      try { localStorage.setItem(KEY, '1'); } catch (e) {}
-      banner.remove();
-    });
-  })();
 </script>
 </body>
 </html>

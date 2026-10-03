@@ -237,6 +237,12 @@ class SiteContractTests(unittest.TestCase):
             self.assertEqual(html.count(tag), 1, page)
             self.assertLess(html.index(tag), html.index("</head>"), page)
 
+    def test_custom_cookie_banner_is_removed(self):
+        for path in sorted(ROOT.glob("*.html")):
+            html = path.read_text(encoding="utf-8")
+            self.assertNotIn("cd_cookie_consent", html, path.name)
+            self.assertNotIn("cookieOk", html, path.name)
+
     def test_aluminium_page_does_not_claim_wood_products(self):
         html = self.read("persiane-scuri-alluminio.html")
         self.assertNotIn("Scuri in legno", html)
