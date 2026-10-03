@@ -243,6 +243,21 @@ class SiteContractTests(unittest.TestCase):
             self.assertNotIn("cd_cookie_consent", html, path.name)
             self.assertNotIn("cookieOk", html, path.name)
 
+    def test_footer_uses_official_iubenda_links_and_hides_the_extra_legal_footer(self):
+        privacy = 'href="https://www.iubenda.com/privacy-policy/68390861"'
+        cookie = 'href="https://www.iubenda.com/privacy-policy/68390861/cookie-policy"'
+        for path in sorted(ROOT.glob("*.html")):
+            html = path.read_text(encoding="utf-8")
+            footer = html[html.index("<footer"):html.index("</footer>")]
+            self.assertIn(privacy, footer, path.name)
+            self.assertIn(cookie, footer, path.name)
+            self.assertIn("iubenda-cs-preferences-link", footer, path.name)
+            self.assertNotIn('href="privacy.html"', footer, path.name)
+            self.assertNotIn('href="cookie.html"', footer, path.name)
+            self.assertEqual(html.count("https://cdn.iubenda.com/iubenda.js"), 1, path.name)
+            self.assertIn("#iub-legal-footer { display: none !important; }", html, path.name)
+            self.assertIn("embeds.iubenda.com/widgets/5c360cf1-d263-40f5-886e-3d1045f3835b.js", html, path.name)
+
     def test_aluminium_page_does_not_claim_wood_products(self):
         html = self.read("persiane-scuri-alluminio.html")
         self.assertNotIn("Scuri in legno", html)
