@@ -288,8 +288,9 @@ class SiteContractTests(unittest.TestCase):
 
     def test_contact_form_has_an_information_notice_with_the_official_privacy_link(self):
         html = self.read("index.html")
-        self.assertIn("come descritto nella", html)
+        self.assertIn("I dati inseriti saranno utilizzati esclusivamente per rispondere alla tua richiesta di preventivo. Inviando la richiesta dichiari di aver preso visione della <a href=\"https://www.iubenda.com/privacy-policy/68390861\"", html)
         self.assertNotIn("accetti il trattamento", html)
+        self.assertNotIn('type="checkbox"', html)
 
     def test_aluminium_page_does_not_claim_wood_products(self):
         html = self.read("persiane-scuri-alluminio.html")
