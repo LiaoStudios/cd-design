@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://liaostudios.github.io/cd-design/sitemap.xml
+Sitemap: https://cd-design.eu/sitemap.xml

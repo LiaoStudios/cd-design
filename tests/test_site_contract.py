@@ -258,6 +258,39 @@ class SiteContractTests(unittest.TestCase):
             self.assertIn("#iub-legal-footer { display: none !important; }", html, path.name)
             self.assertIn("embeds.iubenda.com/widgets/5c360cf1-d263-40f5-886e-3d1045f3835b.js", html, path.name)
 
+    def test_pages_load_no_third_party_resources_besides_iubenda(self):
+        allowed = ("iubenda.com",)
+        for path in sorted(ROOT.glob("*.html")):
+            html = path.read_text(encoding="utf-8")
+            for tag in re.findall(r'<(?:script|link)[^>]+(?:src|href)="(https?://[^"]+)"', html):
+                host = tag.split("/")[2]
+                if "canonical" in tag:
+                    continue
+                self.assertTrue(host.endswith(allowed) or host == "cd-design.eu", f"{path.name}: {tag}")
+            for forbidden in ("googleapis", "gstatic", "cdn.tailwindcss", "jsdelivr", "iconify"):
+                self.assertNotIn(forbidden, html, path.name)
+            self.assertIn('href="assets/fonts.css"', html, path.name)
+            self.assertIn('href="assets/tailwind.css"', html, path.name)
+        self.assertTrue((ROOT / "assets/fonts.css").is_file())
+        self.assertTrue(list((ROOT / "assets/fonts").glob("*.woff2")))
+
+    def test_legacy_policy_pages_are_replaced_by_redirects_to_iubenda(self):
+        self.assertFalse((ROOT / "privacy.html").exists())
+        self.assertFalse((ROOT / "cookie.html").exists())
+        redirects = self.read("_redirects")
+        self.assertIn("/privacy.html https://www.iubenda.com/privacy-policy/68390861 301", redirects)
+        self.assertIn("/cookie.html https://www.iubenda.com/privacy-policy/68390861/cookie-policy 301", redirects)
+
+    def test_urls_point_to_the_netlify_domain_not_github_pages(self):
+        for name in [*(p.name for p in ROOT.glob("*.html")), "sitemap.xml", "robots.txt"]:
+            self.assertNotIn("github.io", self.read(name), name)
+        self.assertIn("https://cd-design.eu/sitemap.xml", self.read("robots.txt"))
+
+    def test_contact_form_has_an_information_notice_with_the_official_privacy_link(self):
+        html = self.read("index.html")
+        self.assertIn("come descritto nella", html)
+        self.assertNotIn("accetti il trattamento", html)
+
     def test_aluminium_page_does_not_claim_wood_products(self):
         html = self.read("persiane-scuri-alluminio.html")
         self.assertNotIn("Scuri in legno", html)
